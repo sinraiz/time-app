@@ -22,7 +22,7 @@ module.exports = {
         // PostgreSQL DB instance    
         connectionString: "postgres://emocdxkv:WlyKU8WgQxqe7EZCpZB89SDX5_wAvh3L@horton.elephantsql.com:5432/emocdxkv",
         // The size of the db connection pool
-        poolSize: 0 
-        // poolSize: 2 // for reliable connection to DB
+        //poolSize: 0 
+        poolSize: 2 // for reliable connections to DB
     },
 }
