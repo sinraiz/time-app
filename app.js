@@ -63,8 +63,9 @@ else {
 }
 
 // Start the app's Web server
+const PORT = process.env.PORT || config.system.port;
 
-var server = app.listen(config.system.port, config.system.hostname, function () {
+var server = app.listen(PORT, config.system.hostname, function () {
 
     var address = server.address();
     var hostname = address.address;
