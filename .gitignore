@@ -1,0 +1,8 @@
+.vs/
+bin/
+node_modules/
+obj/
+typings/
+/TimeManagement.sln
+/TimeManagement.njsproj
+/typings.json
