@@ -6,6 +6,9 @@
   "author": {
     "name": "admin"
   },
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
     "async": "^2.0.1",
     "bcryptjs": "^2.3.0",
