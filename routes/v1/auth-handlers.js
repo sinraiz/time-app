@@ -88,7 +88,7 @@ module.exports = function (routeContext) {
                     
                     // Check if it was found
                     if (!usrFound) {
-                        return res.sendStatus(401);
+                        return res.status(401).send("auth_error");
                     }
                     
                     // Compare the hashes
@@ -96,13 +96,13 @@ module.exports = function (routeContext) {
                 },
                 function (isMatch, acb) {
                     if (!isMatch) {
-                        return res.sendStatus(401);
+                        return res.status(401).send("auth_error");
                     }
                     var json = getAuthResponse(config, db, user, acb);
                     res.send(json);
                 }
             ], function (err) {
-                // report the error as 422 with content set to error code
+                // report the error as 401 with content set to error code
                 return res.status(401).send(err.name);
             })
         },
