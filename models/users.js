@@ -246,7 +246,7 @@ UsersModel.prototype.findbyEmail = function (email, cb) {
                 user.setRole(role);
                 user.setEmail(row.email);
                 user.setPasswordHash(row.pwd_hash);
-                user.getWorkingHours(row.max_hours);
+                user.getWorkingHours(row.max_hours);;
                 user.setName(row.full_name);
             }
             catch (err) {
