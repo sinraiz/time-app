@@ -205,16 +205,16 @@ User.prototype.setWorkingHours = function (working_hours) {
         return;
     }
 
-    if (!helper.isInt(working_hours)) {
+    if (!helper.isFloat(working_hours)) {
         throw { name: 'bad_working_hours', message: 'The working hours have incorrect format' };
     }
 
     if (working_hours < 0) {
-        throw { name: 'bad_duration', message: 'The duration has incorrect format' };
+        throw { name: 'bad_working_hours', message: 'The working hours has incorrect format' };
     }
 
-    if (working_hours > 24 * 60 * 60) {
-        throw { name: 'bad_duration', message: 'The duration has incorrect format' };
+    if (working_hours >= 24) {
+        throw { name: 'bad_working_hours', message: 'The working hours has incorrect format' };
     }
 
     this._working_hours = working_hours;

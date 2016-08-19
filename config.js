@@ -19,10 +19,13 @@ module.exports = {
     },
     // DB settings:
     db: {
-        // PostgreSQL DB instance    
+        // PostgreSQL DB instance   
+
         //connectionString: "postgres://emocdxkv:WlyKU8WgQxqe7EZCpZB89SDX5_wAvh3L@horton.elephantsql.com:5432/emocdxkv",
+        //connectionString: "postgres://qeqojhyyomnsbu:ki5b0GwiLXKHEgXYFF5rw_s-WK@ec2-54-243-203-85.compute-1.amazonaws.com:5432/dfq9ndr3p2gfvt?ssl=true&sslfactory=org.postgresql.ssl.NonValidatingFactory",
         connectionString: "postgres://qeqojhyyomnsbu:ki5b0GwiLXKHEgXYFF5rw_s-WK@ec2-54-243-203-85.compute-1.amazonaws.com:5432/dfq9ndr3p2gfvt",
-        // The size of the db connection pool
+       
+         // The size of the db connection pool
         //poolSize: 0 
         poolSize: 2 // for reliable connections to DB
     },
