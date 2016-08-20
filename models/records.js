@@ -108,7 +108,8 @@ RecordsModel.prototype.get = function (recId, cb) {
                 + '   extract(epoch from dt_day at time zone \'utc\') as dt_day,'
                 + '   duration_sec,'
                 + '   note,'
-                + '   is_under_hours'
+                + '   is_under_hours,'
+                + '   user_name'
                 + ' FROM v_work w'
                 + ' WHERE w.id = ?';
             db.queryRow(sql, [recId], acb);
@@ -130,11 +131,12 @@ RecordsModel.prototype.get = function (recId, cb) {
                 rec.setDuration(row.duration_sec);
                 rec.setNote(row.note);
 
-                // The field that is not supposed to be
+                // The fielda that are not supposed to be
                 // accessed from outside the model because
-                // it's an aggregate and is used only at 
-                // the clients
+                // they're aggregates and is used only at 
+                // the clients' side
                 rec._is_under_hours = row.is_under_hours;
+                rec._user_name = row.user_name;
             }
             catch (err) {
                 // Something is wrong with the data
@@ -171,7 +173,8 @@ RecordsModel.prototype.getAll = function (userId, from, to, cb) {
                 + '   extract(epoch from dt_day at time zone \'utc\') as dt_day,'
                 + '   duration_sec,'
                 + '   note,'
-                + '   is_under_hours'
+                + '   is_under_hours,'
+                + '   user_name'
                 + ' FROM v_work w'
                 + ' WHERE (user_id = $1 OR $1 IS NULL)'
                 + '       AND (date_trunc(\'day\', dt_day) >= $2 OR $2 IS NULL)'
@@ -198,11 +201,12 @@ RecordsModel.prototype.getAll = function (userId, from, to, cb) {
                     rec.setDuration(row.duration_sec);
                     rec.setNote(row.note);
 
-                    // The field that is not supposed to be
+                    // The field that are not supposed to be
                     // accessed from outside the model because
-                    // it's an aggregate and is used only at 
+                    // they're aggregates and are used only at 
                     // the clients
                     rec._is_under_hours = row.is_under_hours;
+                    rec._user_name = row.user_name;
 
                     // Add to the resulting collection
                     recs.push(rec);

@@ -27,8 +27,14 @@ function Record() {
     this._duration_sec = 0;
     // The description of work
     this._note = null;
+
+    /*---------- The calculated fields for fetched records --------------*/
+
     // If the work was under the user's hours
     this._is_under_hours = false;
+
+    // The username fetched from DB's view
+    this._user_name = null;
 }
 
 /**
@@ -54,8 +60,14 @@ Record.prototype.copy = function (obj) {
     if (typeof (obj._note) !== 'undefined') {
         this._note = obj._note;
     }
+
+    // ----------------------------------------------------------
+
     if (typeof (obj._is_under_hours) !== 'undefined') {
         this._is_under_hours = obj._is_under_hours;
+    }
+    if (typeof (obj._user_name) !== 'undefined') {
+        this._user_name = obj._user_name;
     }
 }
 
@@ -235,8 +247,10 @@ Record.prototype.toJson = function () {
         when: this._dt_day,
         duration: this._duration_sec,
         note: this._note,
-        // The below field is used only when records are fetched, otherwise is ignored
-        is_under_hours: this._is_under_hours 
+
+        // The below fields are used only when records are fetched, otherwise they're ignored
+        is_under_hours: this._is_under_hours,
+        _user_name: this._user_name
     };
 }
 
