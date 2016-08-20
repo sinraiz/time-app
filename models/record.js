@@ -250,7 +250,7 @@ Record.prototype.toJson = function () {
 
         // The below fields are used only when records are fetched, otherwise they're ignored
         is_under_hours: this._is_under_hours,
-        _user_name: this._user_name
+        user_name: this._user_name
     };
 }
 
