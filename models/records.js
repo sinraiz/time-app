@@ -79,6 +79,10 @@ RecordsModel.prototype.add = function (record, cb) {
             if (err.code === '23503') {
                 err.name = 'unknown_user';
             }
+            else
+            if (err.code === '23505') {
+                err.name = 'duplicate_entry';
+            }
 
             cb(err, null);
         });
