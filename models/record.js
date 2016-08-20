@@ -221,7 +221,6 @@ Record.prototype.setDay = function (day) {
     this._dt_day = day;
 }
 
-
 /**
  * Returns the shorter version of record's data, without the
  * fields with underscores

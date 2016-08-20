@@ -130,7 +130,6 @@ RecordsModel.prototype.get = function (recId, cb) {
                 rec.setDuration(row.duration_sec);
                 rec.setNote(row.note);
 
-
                 // The field that is not supposed to be
                 // accessed from outside the model because
                 // it's an aggregate and is used only at 
