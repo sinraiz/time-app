@@ -350,7 +350,13 @@ UsersModel.prototype.update = function (id, user, cb) {
  */
 UsersModel.prototype.delete = function (userId, cb) {
     
-    this.db.delete('users', userId, function (err) {
+    this.db.delete('users', userId,
+        function (err) {
+
+        if (err.code === '23505') {
+            err.name = 'user_has_records';
+            }
+
         cb(err);
     });
 }
