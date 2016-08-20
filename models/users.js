@@ -353,7 +353,7 @@ UsersModel.prototype.delete = function (userId, cb) {
     this.db.delete('users', userId,
         function (err) {
 
-        if (err.code === '23505') {
+        if (err.code === '23503') {
             err.name = 'user_has_records';
             }
 
