@@ -242,7 +242,7 @@ module.exports = function (routeContext) {
             users.delete(idUser, function (err, userData) {
 
                 if (err) {
-                    return res.sendStatus(422);
+                    return res.status(422).send(err.name);
                 }
                 return res.status(200).send('OK');
             });
