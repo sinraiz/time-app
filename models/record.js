@@ -27,6 +27,8 @@ function Record() {
     this._duration_sec = 0;
     // The description of work
     this._note = null;
+    // If the work was under the user's hours
+    this._is_under_hours = false;
 }
 
 /**
@@ -51,6 +53,9 @@ Record.prototype.copy = function (obj) {
     }
     if (typeof (obj._note) !== 'undefined') {
         this._note = obj._note;
+    }
+    if (typeof (obj._is_under_hours) !== 'undefined') {
+        this._is_under_hours = obj._is_under_hours;
     }
 }
 
@@ -216,6 +221,7 @@ Record.prototype.setDay = function (day) {
     this._dt_day = day;
 }
 
+
 /**
  * Returns the shorter version of record's data, without the
  * fields with underscores
@@ -229,7 +235,9 @@ Record.prototype.toJson = function () {
         user_id: this._user_id,
         when: this._dt_day,
         duration: this._duration_sec,
-        note: this._note
+        note: this._note,
+        // The below field is used only when records are fetched, otherwise is ignored
+        is_under_hours: this._is_under_hours 
     };
 }
 

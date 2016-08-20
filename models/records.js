@@ -107,8 +107,9 @@ RecordsModel.prototype.get = function (recId, cb) {
                 + '   user_id,'
                 + '   extract(epoch from dt_day at time zone \'utc\') as dt_day,'
                 + '   duration_sec,'
-                + '   note'
-                + ' FROM work w'
+                + '   note,'
+                + '   is_under_hours'
+                + ' FROM v_work w'
                 + ' WHERE w.id = ?';
             db.queryRow(sql, [recId], acb);
         },
@@ -128,6 +129,13 @@ RecordsModel.prototype.get = function (recId, cb) {
                 rec.setDay(new Date(row.dt_day * 1000)); // UTC as string, the clients convert to local
                 rec.setDuration(row.duration_sec);
                 rec.setNote(row.note);
+
+
+                // The field that is not supposed to be
+                // accessed from outside the model because
+                // it's an aggregate and is used only at 
+                // the clients
+                rec._is_under_hours = rec.is_under_hours;
             }
             catch (err) {
                 // Something is wrong with the data
@@ -163,8 +171,9 @@ RecordsModel.prototype.getAll = function (userId, from, to, cb) {
                 + '   user_id,'
                 + '   extract(epoch from dt_day at time zone \'utc\') as dt_day,'
                 + '   duration_sec,'
-                + '   note'
-                + ' FROM work w'
+                + '   note,'
+                + '   is_under_hours'
+                + ' FROM v_work w'
                 + ' WHERE (user_id = $1 OR $1 IS NULL)'
                 + '       AND (date_trunc(\'day\', dt_day) >= $2 OR $2 IS NULL)'
                 + '       AND  (date_trunc(\'day\', dt_day) <= $3 OR $3 IS NULL)'
@@ -189,6 +198,12 @@ RecordsModel.prototype.getAll = function (userId, from, to, cb) {
                     rec.setDay(new Date(row.dt_day * 1000)); // UTC as string, the clients convert to local
                     rec.setDuration(row.duration_sec);
                     rec.setNote(row.note);
+
+                    // The field that is not supposed to be
+                    // accessed from outside the model because
+                    // it's an aggregate and is used only at 
+                    // the clients
+                    rec._is_under_hours = rec.is_under_hours;
 
                     // Add to the resulting collection
                     recs.push(rec);
