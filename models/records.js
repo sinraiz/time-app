@@ -134,7 +134,7 @@ RecordsModel.prototype.get = function (recId, cb) {
                 // accessed from outside the model because
                 // it's an aggregate and is used only at 
                 // the clients
-                rec._is_under_hours = rec.is_under_hours;
+                rec._is_under_hours = row.is_under_hours;
             }
             catch (err) {
                 // Something is wrong with the data
@@ -202,7 +202,7 @@ RecordsModel.prototype.getAll = function (userId, from, to, cb) {
                     // accessed from outside the model because
                     // it's an aggregate and is used only at 
                     // the clients
-                    rec._is_under_hours = rec.is_under_hours;
+                    rec._is_under_hours = row.is_under_hours;
 
                     // Add to the resulting collection
                     recs.push(rec);
