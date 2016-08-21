@@ -55,20 +55,16 @@ RecordsModel.prototype.add = function (record, cb) {
             }, true, acb);
         },
         function (id, acb) {
-            // Retain the work record id
-            recordId = id;
+                self.get(id, acb);
+        },
+        function (record, acb) {
+            addedRecord = record;
 
             // Commit the transaction:
             dbc.commit(acb);
             dbc = null;
         },
         function (acb) {
-            // the resulting user record
-            addedRecord = new Record();
-            addedRecord.copy(record);
-            addedRecord.setId(recordId);
-            addedRecord._dt_created = dtCreated;
-
             // Return the result
             cb(null, addedRecord);
 
