@@ -240,7 +240,7 @@ describe('Auth', function () {
 
                     res.should.have.status(401);
                     res.text.should.be.a('string');
-                    res.text.should.equal('Unauthorized');
+                    res.text.should.equal('auth_error');
                     done();
                 });
         });
@@ -275,7 +275,7 @@ describe('Auth', function () {
 
                     res.should.have.status(401);
                     res.text.should.be.a('string');
-                    res.text.should.equal('Unauthorized');
+                    res.text.should.equal('auth_error');
                     done();
                 });
         });

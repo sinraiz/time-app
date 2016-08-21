@@ -244,7 +244,7 @@ module.exports = function (routeContext) {
                 if (err) {
                     return res.status(422).send(err.name);
                 }
-                return res.status(200).send('OK');
+                return res.send('OK');
             });
         }
 
