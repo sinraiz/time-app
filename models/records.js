@@ -36,6 +36,7 @@ RecordsModel.prototype.add = function (record, cb) {
 
     var db = this.db;
     var dbc = null;
+    var self = this;
 
     async.waterfall([
         function (acb) {
@@ -55,19 +56,17 @@ RecordsModel.prototype.add = function (record, cb) {
             }, true, acb);
         },
         function (id, acb) {
-                self.get(id, acb);
-        },
-        function (record, acb) {
-            addedRecord = record;
-
+            recordId = id;
             // Commit the transaction:
             dbc.commit(acb);
             dbc = null;
         },
         function (acb) {
+            self.get(recordId, acb);
+        },
+        function (record) {
             // Return the result
-            cb(null, addedRecord);
-
+            cb(null, record);
         }], function (err) {
             if (dbc) {
                 dbc.rollback();
