@@ -31,7 +31,7 @@ function Record() {
     /*---------- The calculated fields for fetched records --------------*/
 
     // If the work was under the user's hours
-    this._is_under_hours = false;
+    this._is_under_hours = 0;
 
     // The username fetched from DB's view
     this._user_name = null;
